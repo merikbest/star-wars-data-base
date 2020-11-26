@@ -5,11 +5,11 @@ import RandomPlanet from '../random-planet/random-planet';
 import ErrorIndicator from "../error-indicator/error-indicator";
 import SwapiService from "../../services/swdb-service";
 import ErrorBoundary from "../error-boundary/error-boundary";
-
+import {SwapiServiceProvider} from "../sw-service-context/sw-service-context";
+import PersonDetails from "../sw-components/person-details";
+import StarshipDetails from "../sw-components/starship-details";
+import PlanetDetails from "../sw-components/planet-details";
 import {
-    PersonDetails,
-    PlanetDetails,
-    StarshipDetails,
     PersonList,
     PlanetList,
     StarshipList
@@ -72,34 +72,29 @@ class App extends Component {
             </div>
         );
 
-
         return (
             <ErrorBoundary>
-                <div className="stardb-app container">
-                    <Header/>
+                <SwapiServiceProvider value={this.swapiService}>
+                    <div className="stardb-app container">
+                        <Header/>
 
-                    <PersonList>
-                        {({name}) => <span>{name}</span>}
-                    </PersonList>
+                        <PersonList/>
 
-                    <StarshipList>
-                        {({name}) => <span>{name}</span>}
-                    </StarshipList>
+                        <StarshipList/>
 
-                    <PlanetList>
-                        {({name}) => <span>{name}</span>}
-                    </PlanetList>
+                        <PlanetList/>
 
-                    <PersonDetails itemId={11}/>
+                        <PersonDetails itemId={11}/>
 
-                    <StarshipDetails itemId={9}/>
+                        <StarshipDetails itemId={9}/>
 
-                    <PlanetDetails  itemId={5}/>
+                        <PlanetDetails itemId={5}/>
 
-                    {/*{planet}*/}
-                    {/*<Row leftElement={left} rightElement={right}/>*/}
-                    {/*<PeoplePage/>*/}
-                </div>
+                        {/*{planet}*/}
+                        {/*<Row leftElement={left} rightElement={right}/>*/}
+                        {/*<PeoplePage/>*/}
+                    </div>
+                </SwapiServiceProvider>
             </ErrorBoundary>
         );
     }

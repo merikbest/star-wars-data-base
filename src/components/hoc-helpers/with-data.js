@@ -5,14 +5,14 @@ import Spinner from "../spiner/spinner";
 // HOC. В JS функция может возврашать другую функцию:
 // (вынесли всю логику работы с сетью и какой компонент нужно отображать в отдельную функцию)
 // View === ItemList
-const withData = (View, getData) => {
+const withData = (View) => {
     return class extends Component {
         state = {
             data: null
         };
 
         componentDidMount() {
-            getData()
+            this.props.getData()
                 .then((data) => {
                     this.setState({
                         data
