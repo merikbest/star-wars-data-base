@@ -1,20 +1,17 @@
-import React, {Component} from "react";
-import Spinner from "../spiner/spinner";
-import ErrorIndicator from "../error-indicator/error-indicator";
+import React, {Component} from 'react';
+import Spinner from '../spiner/spinner';
+import ErrorIndicator from '../error-indicator/error-indicator';
 
-//ЛОГИКА
-// HOC. В JS функция может возврашать другую функцию:
-// (вынесли всю логику работы с сетью и какой компонент нужно отображать в отдельную функцию)
-// View === ItemList
 const withData = (View) => {
     return class extends Component {
+
         state = {
             data: null,
             loading: true,
             error: false
         };
 
-        componentDidUpdate(prevProps, prevState, snapshot) {
+        componentDidUpdate(prevProps) {
             if (this.props.getData !== prevProps.getData) {
                 this.update();
             }
@@ -45,18 +42,19 @@ const withData = (View) => {
                 });
         }
 
+
         render() {
             const {data, loading, error} = this.state;
 
-            if (!loading) {
+            if (loading) {
                 return <Spinner/>;
             }
 
             if (error) {
-                return <ErrorIndicator/>
+                return <ErrorIndicator/>;
             }
 
-            return <View {...this.props} data={data}/>
+            return <View {...this.props} data={data}/>;
         }
     };
 };

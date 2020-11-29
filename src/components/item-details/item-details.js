@@ -76,6 +76,6 @@ export default class ItemDetails extends Component {
                     <ErrorButton/>
                 </div>
             </div>
-        )
+        );
     }
 }

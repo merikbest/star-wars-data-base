@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 // Создаем свою разметку
 const Row = ({leftElement, rightElement}) => {
@@ -14,4 +15,8 @@ const Row = ({leftElement, rightElement}) => {
     );
 };
 
+Row.propTypes = {
+    left: PropTypes.node,
+    right: PropTypes.node
+};
 export default Row;
